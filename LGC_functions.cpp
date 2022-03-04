@@ -111,7 +111,7 @@ double CDFnorm(double x)
 
 
 // [[Rcpp::export]]
-double kendall_tau (vec x, vec y)
+double kendall_tau (arma::vec x, arma::vec y)
 {
   int n=x.n_elem, i, j;
   double na=0, nb=0, nc=0, nd=0, ne=0, nf=0;
@@ -124,10 +124,10 @@ double kendall_tau (vec x, vec y)
       if(x[i]<x[j] && y[i]>y[j]) {nc = nc+1;}
       if(x[i]<x[j] && y[i]<y[j]) {nd = nd+1;}
       if(x[i]==x[j] && y[i]!=y[j]) {ne = ne+1;}
-      if(x[i]!=x[j] && y[i]==y[j]) {nf = nf+1;}      
+      if(x[i]!=x[j] && y[i]==y[j]) {nf = nf+1;}
     }
   }
-  return (na+nd-nb-nc)/std::sqrt((na+nd+nb+nc+ne)*(na+nd+nb+nc+nf))
+  return (na+nd-nb-nc)/std::sqrt((na+nd+nb+nc+ne)*(na+nd+nb+nc+nf));
 }
 
 double ContinuousInC(vec x, vec y)
